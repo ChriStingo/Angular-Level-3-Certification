@@ -1,0 +1,30 @@
+.tab-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 2px; 
+}
+
+.tab-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6a9bd1; 
+    color: white; 
+    padding: 5px 10px;  
+    border: 1px solid black;
+    font-family: Arial, sans-serif; 
+}
+
+.tab-card-active {
+    background-color: #2477cf; 
+}
+
+.tab-text {
+    font-size: 16px; 
+}
+
+.close-button {
+    cursor: pointer; 
+    font-size: 16px;  
+    margin-left: 20px;
+}

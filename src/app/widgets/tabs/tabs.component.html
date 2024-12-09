@@ -1,0 +1,9 @@
+<div>
+    <div class="tab-container">
+        <div *ngFor="let tab of tabsHeader;" class="tab-card" [ngClass]="{'tab-card-active' : tab.active}" (click)="changeActiveTab(tab.id)">
+            <span class="tab-text">{{tab.title}}</span>
+            <span class="close-button" (click)="onDeletedTab(tab.id)">X</span>
+        </div>
+    </div>
+    <ng-content></ng-content>
+</div>
