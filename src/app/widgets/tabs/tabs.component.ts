@@ -17,18 +17,24 @@ export class TabsComponent implements AfterContentChecked {
      * Behavior:
      * If there are changes in the tabs:
      * - Understand if there are new tabs or deleted ones
-     *   - If there are new tabs, set the last one as active
+     *   - If there are new tabs and it's the first loading, set the first one as active
+     *   - If there are new tabs and it's not the first loading, set the last one as active
      *   - If there are deleted tabs and there is a current active tab, leave it.
      *   - If there are deleted tabs and there isn't a current active tab, set the last one as active
      */
     if(this.tabs.length !== this.tabsHeader.length) {
       const thereAreNewTabs = this.tabs.length > this.tabsHeader.length;
+      const firstLoading = this.tabsHeader.length === 0;
       this.tabsHeader = this.tabs.map(tab => {return {title: tab.title, active: false, id: tab.id}});
       
       // Check if there are tabs or if all tabs were deleted
       if(this.tabsHeader.length) {
         if(thereAreNewTabs){
-          this.changeActiveTab(this.tabsHeader[this.tabsHeader.length - 1]?.id);
+          if(firstLoading){
+            this.changeActiveTab(this.tabsHeader?.[0]?.id);
+          } else {
+            this.changeActiveTab(this.tabsHeader[this.tabsHeader.length - 1]?.id);
+          }
         } else {
           this.changeActiveTab(this.tabs.find(tab => tab.active())?.id ?? this.tabsHeader[this.tabsHeader.length - 1]?.id)
         } 
